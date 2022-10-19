@@ -96,8 +96,6 @@ func TestPolkadotComposableChainStart(t *testing.T) {
 	const relayerName = "relayer"
 	eRep := rep.RelayerExecReporter(t)
 
-	//just a change
-
 	ic := ibctest.NewInterchain().
 		AddChain(chain).
 		AddChain(chain2).
