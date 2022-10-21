@@ -3,6 +3,8 @@ package ibctest_test
 import (
 	"context"
 	"fmt"
+	"github.com/strangelove-ventures/ibctest/v6/internal/dockerutil"
+	"github.com/strangelove-ventures/ibctest/v6/relayer"
 	"testing"
 
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -94,7 +96,8 @@ func TestInterchain_GetRelayerWallets(t *testing.T) {
 
 	gaia0, gaia1 := chains[0], chains[1]
 
-	r := ibctest.NewBuiltinRelayerFactory(ibc.CosmosRly, zaptest.NewLogger(t)).Build(
+	r := ibctest.NewBuiltinRelayerFactory(ibc.CosmosRly, zaptest.NewLogger(t), relayer.ImagePull(false),
+		relayer.CustomDockerImage("relayer", "upstream-main", dockerutil.GetHeighlinerUserString())).Build(
 		t, client, network,
 	)
 
