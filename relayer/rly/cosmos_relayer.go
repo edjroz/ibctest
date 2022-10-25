@@ -61,7 +61,7 @@ type CosmosRelayerChainConfig struct {
 
 const (
 	DefaultContainerImage   = "ghcr.io/cosmos/relayer"
-	DefaultContainerVersion = "v2.1.2"
+	DefaultContainerVersion = "feat-substrate"
 )
 
 // Capabilities returns the set of capabilities of the Cosmos relayer.
