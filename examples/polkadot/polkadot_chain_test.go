@@ -2,13 +2,13 @@ package polkadot_test
 
 import (
 	"context"
-	"github.com/strangelove-ventures/ibctest/v6/relayer"
-	"github.com/strangelove-ventures/ibctest/v6/testreporter"
 	"testing"
 
 	"github.com/strangelove-ventures/ibctest/v6"
 	"github.com/strangelove-ventures/ibctest/v6/ibc"
+	"github.com/strangelove-ventures/ibctest/v6/relayer"
 	"github.com/strangelove-ventures/ibctest/v6/test"
+	"github.com/strangelove-ventures/ibctest/v6/testreporter"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zaptest"
 )
@@ -80,9 +80,18 @@ func TestCreatePolakdotCosmosLink(t *testing.T) {
 			NumFullNodes:  &nf,
 		},
 		{
-			Name:      "gaia",
-			ChainName: "gaia",
-			Version:   "v7.0.3",
+			Name:    "gaia",
+			Version: "beefy",
+			ChainConfig: ibc.ChainConfig{
+				ChainID: "gaia",
+				Images: []ibc.DockerImage{
+					{
+						Repository: "ghcr.io/oshorefueled/gaia",
+						Version:    "beefy",
+						UidGid:     "100:1000",
+					},
+				},
+			},
 		},
 	},
 	).Chains(t.Name())
@@ -113,7 +122,7 @@ func TestCreatePolakdotCosmosLink(t *testing.T) {
 	require.NoError(t, err, "gaia chain failed to make blocks")
 
 	r := ibctest.NewBuiltinRelayerFactory(ibc.CosmosRly, zaptest.NewLogger(t), relayer.ImagePull(false),
-		relayer.CustomDockerImage("relayer", "feat-substrate", "100:1000")).Build(
+		relayer.CustomDockerImage("relayer", "create-client", "100:1000")).Build(
 		t, client, network,
 	)
 
