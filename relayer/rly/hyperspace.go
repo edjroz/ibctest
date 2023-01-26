@@ -6,15 +6,16 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/types"
 	"strings"
+
+	"github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/btcsuite/btcd/chaincfg"
 	keys "github.com/cosmos/btcutil/hdkeychain"
 	"github.com/docker/docker/client"
 	"github.com/pelletier/go-toml/v2"
-	"github.com/strangelove-ventures/ibctest/v5/ibc"
-	"github.com/strangelove-ventures/ibctest/v5/relayer"
+	"github.com/strangelove-ventures/ibctest/v6/ibc"
+	"github.com/strangelove-ventures/ibctest/v6/relayer"
 	"go.uber.org/zap"
 )
 
